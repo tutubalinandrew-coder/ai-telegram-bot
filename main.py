@@ -1,5 +1,5 @@
 from config import BOT_TOKEN
-from handlers import start, handle_answer, clear, history, time_command, stats
+from handlers import start, handle_answer, clear, history, time_command, stats, help_command
 from telegram.ext import (Application, CommandHandler, MessageHandler, filters)
 from database import create_messages_table
 
@@ -14,6 +14,7 @@ def main():
     app.add_handler(CommandHandler("history", history))
     app.add_handler(CommandHandler("time", time_command))
     app.add_handler(CommandHandler("stats", stats))
+    app.add_handler(CommandHandler("help", help_command))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_answer))
     
     print("Бот запущен...")

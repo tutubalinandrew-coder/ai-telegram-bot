@@ -57,3 +57,15 @@ async def stats(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
     count = count_user_messages(user_id)
     await update.message.reply_text(f"У Вас {count} сообщений в памяти.")
+
+
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text('''
+    Введите одну из команд:
+    /start
+    /clear
+    /history
+    /stats
+    /time
+    /help'''
+    )
