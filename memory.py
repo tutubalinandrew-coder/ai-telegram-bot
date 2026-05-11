@@ -1,6 +1,6 @@
 from config import SYSTEM_PROMPT, MAX_HISTORY
 from telegram.ext import ContextTypes
-from database import get_last_messages
+from postgres_database import get_last_messages
 
 
 

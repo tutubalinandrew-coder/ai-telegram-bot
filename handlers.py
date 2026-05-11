@@ -5,7 +5,7 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.constants import ChatAction
 from processor import process_user_message
-from database import get_last_messages, delete_user_messages, count_user_messages
+from postgres_database import get_last_messages, delete_user_messages, count_user_messages
 from datetime import datetime
 
 

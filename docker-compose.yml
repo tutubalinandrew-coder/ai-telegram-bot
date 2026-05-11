@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: ai_bot_postgres
+    environment:
+      POSTGRES_DB: ai_bot_db
+      POSTGRES_USER: ai_bot_user
+      POSTGRES_PASSWORD: ai_bot_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  bot:
+    build: .
+    container_name: ai_telegram_bot
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

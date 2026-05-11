@@ -3,7 +3,7 @@ from ai import get_ai_response
 from memory import initialize_history, add_user_message, add_assistant_message, trim_history, remove_last_user_message, get_messages
 from config import ERROR_MESSAGE
 from logger import log_message
-from database import save_message
+from postgres_database import save_message
 
 
 async def process_user_message(context: ContextTypes.DEFAULT_TYPE, user_id: int, text: str):
