@@ -1,0 +1,5 @@
+__pycache__/
+.git
+.env
+database.db
+log.txt
