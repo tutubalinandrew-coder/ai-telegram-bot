@@ -1,13 +1,13 @@
 
 
-from itertools import count
+
 from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.constants import ChatAction
 from processor import process_user_message
 from postgres_database import get_last_messages, delete_user_messages, count_user_messages
 from datetime import datetime
-
+from logger import log_error
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -69,3 +69,9 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     /time
     /help'''
     )
+
+async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    log_error(context.error)
+    if update and update.message:
+        await update.message.reply_text("Произошла ошибка. Попробуйте позже")
+   

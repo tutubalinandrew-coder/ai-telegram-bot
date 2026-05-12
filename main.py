@@ -1,5 +1,6 @@
+
 from config import BOT_TOKEN
-from handlers import start, handle_answer, clear, history, time_command, stats, help_command
+from handlers import start, handle_answer, clear, history, time_command, stats, help_command, error_handler
 from telegram.ext import (Application, CommandHandler, MessageHandler, filters)
 from postgres_database import create_messages_table
 from flask import Flask
@@ -19,7 +20,7 @@ def run_web():
 
 
 def main():
-    Thread(target=run_web).start()
+    Thread(target=run_web, daemon=True).start()
     create_messages_table()
     app = Application.builder().token(BOT_TOKEN).build()
 
@@ -30,7 +31,7 @@ def main():
     app.add_handler(CommandHandler("stats", stats))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_answer))
-    
+    app.add_error_handler(error_handler)
     print("Бот запущен...")
 
     app.run_polling()
