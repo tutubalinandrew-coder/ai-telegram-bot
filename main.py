@@ -1,11 +1,24 @@
 from config import BOT_TOKEN
 from handlers import start, handle_answer, clear, history, time_command, stats, help_command
 from telegram.ext import (Application, CommandHandler, MessageHandler, filters)
-from database import create_messages_table
+from postgres_database import create_messages_table
+from flask import Flask
+from threading import Thread
+
+app_web = Flask(__name__)
+
+@app_web.route("/")
+def home():
+    return "Bot is running"
+
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app_web.run(host="0.0.0.0", port=port)
 
 
 
 def main():
+    Thread(target=run_web).start()
     create_messages_table()
     app = Application.builder().token(BOT_TOKEN).build()
 
