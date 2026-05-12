@@ -4,6 +4,7 @@ from telegram.ext import (Application, CommandHandler, MessageHandler, filters)
 from postgres_database import create_messages_table
 from flask import Flask
 from threading import Thread
+import os
 
 app_web = Flask(__name__)
 
