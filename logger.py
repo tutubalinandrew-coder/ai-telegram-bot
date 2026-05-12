@@ -1,25 +1,17 @@
-from datetime import datetime
+import logging
+
+logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s | %(levelname)s | %(message)s'
+        )
+logger = logging.getLogger(__name__)
 
 def log_message(user_text, ai_answer):
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open("log.txt", "a", encoding="utf-8") as file:
-        file.write(
-            f"[{current_time}]\n"
-            f"USER: {user_text}\n"
-            f"AI: {ai_answer}\n"
-            f"---\n"
-        )
-        print(f"USER: {user_text}")
+    logger.info(f"USER: {user_text}\nASSISTANT: {ai_answer}")
+    
     
 
 def log_error(error):
-    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open("log.txt", "a", encoding="utf-8") as file:
-        file.write(
-            f"[{current_time}]\n"
-            f"ERROR: {error}\n"
-            f"---\n"
-        )
-        print(f"ERROR: {error}")
+    logger.error(error)
 
 
