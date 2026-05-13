@@ -1,5 +1,9 @@
 from config import ERROR_MESSAGE, OPENAI_MODEL
 from openai import AsyncOpenAI
+from logger import log_error
+
+
+
 client = AsyncOpenAI()
 
 async def get_ai_response(messages):
@@ -12,5 +16,5 @@ async def get_ai_response(messages):
         print(ai_answer)
         return ai_answer
     except Exception as e:
-        print(f"OpenAI error: {e}")
+        log_error(e)
         return ERROR_MESSAGE

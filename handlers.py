@@ -1,20 +1,19 @@
-
-
-
 from telegram import Update
 from telegram.ext import ContextTypes
 from telegram.constants import ChatAction
 from processor import process_user_message
-from postgres_database import get_last_messages, delete_user_messages, count_user_messages
+from repository import get_last_messages, delete_user_messages, count_user_messages
 from datetime import datetime
 from logger import log_error
 
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print("/start called")
     await update.message.reply_text("Привет! Чем могу помочь?")
 
 
 async def handle_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print("MESSAGE RECEIVED")
     if not update.message or not update.message.text:
         return
     text = update.message.text

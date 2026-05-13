@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 def get_env(name):
     env = os.environ.get(name)
@@ -10,6 +10,7 @@ def get_env(name):
     return env
 
 BOT_TOKEN = get_env("BOT_TOKEN")
+
 
 OPENAI_API_KEY = get_env("OPENAI_API_KEY")
 
