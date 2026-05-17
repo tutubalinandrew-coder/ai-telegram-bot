@@ -15,7 +15,7 @@ async def process_chat(message, db):
         )  
     messages.append({"role": "user", "content": message.text})
     
-    save_message(message.user_id, "user", message.text, db)
+    save_message(message.user_id, "user", message.text, db, user_id_db=user.id)
     answer = await get_ai_response(messages)
-    save_message(message.user_id, "assistant", answer, db)
+    save_message(message.user_id, "assistant", answer, db, user_id_db=user.id)
     return answer

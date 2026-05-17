@@ -2,6 +2,7 @@ from models import Message, User
 from orm_database import SessionLocal
 
 
+
 def get_session(db):
     if db is not None:
         return db, False
@@ -9,13 +10,16 @@ def get_session(db):
     return SessionLocal(), True
 
 
-def save_message(user_id, role, message, db=None):
+def save_message(user_id, role, message, db=None, user_id_db=None):
     db, should_close =  get_session(db)
-    
+    if user_id_db is None:
+        user = get_or_create_user(user_id, db)
+        user_id_db = user.id
     new_message = Message(
         user_id=user_id,
         role=role,
-        message=message
+        message=message,
+        user_id_db=user_id_db
         )
     db.add(new_message)
     db.commit()
