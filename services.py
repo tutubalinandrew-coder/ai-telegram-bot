@@ -1,11 +1,11 @@
 from repository import get_last_messages, save_message
 from ai import get_ai_response
 from repository import get_or_create_user
-
+from config import MEMORY_LIMIT
 
 async def process_chat(message, db):
     user = get_or_create_user(message.user_id, db)
-    history = get_last_messages(message.user_id, 20, db)
+    history = get_last_messages(message.user_id, MEMORY_LIMIT, db)
     history.reverse()
     messages = []
 

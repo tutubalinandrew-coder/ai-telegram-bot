@@ -14,6 +14,7 @@ async def get_ai_response(messages):
         )
         ai_answer = response.choices[0].message.content
         print(ai_answer)
+        print(messages)
         return ai_answer
     except Exception as e:
         log_error(e)
