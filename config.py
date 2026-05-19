@@ -10,7 +10,7 @@ def get_env(name):
     return env
 
 BOT_TOKEN = get_env("BOT_TOKEN")
-
+SECRET_KEY = get_env("SECRET_KEY")
 
 OPENAI_API_KEY = get_env("OPENAI_API_KEY")
 
@@ -24,4 +24,4 @@ POSTGRES_PASSWORD = get_env("POSTGRES_PASSWORD")
 POSTGRES_HOST = get_env("POSTGRES_HOST")
 POSTGRES_PORT = get_env("POSTGRES_PORT")
 RATE_LIMIT = 3
-MEMORY_LIMIT = 2
+MEMORY_LIMIT = 20

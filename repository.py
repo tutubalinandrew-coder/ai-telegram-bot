@@ -14,6 +14,7 @@ def save_message(user_id, role, message, db=None, user_id_db=None):
     db, should_close =  get_session(db)
     if user_id_db is None:
         user = get_or_create_user(user_id, db)
+        print(user.messages)
         user_id_db = user.id
     new_message = Message(
         user_id=user_id,

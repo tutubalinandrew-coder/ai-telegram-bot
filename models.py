@@ -20,10 +20,33 @@ class Message(Base):
         nullable=True
     )
     user: Mapped["User"] = relationship(back_populates="messages")
+    def __repr__(self):
+        return (
+        f"<Message("
+        f"id={self.id}, "
+        f"user_id={self.user_id}, "
+        f"role='{self.role}', "
+        f"message='{self.message[:50] + '...' if len(self.message) > 50 else self.message}', "
+        f"created_at={self.created_at}, "
+        f"user_id_db={self.user_id_db}"
+        f")>"
+    )
+
+
+
+
+
+
 
 class User(Base):
     __tablename__ = "users"
     id: Mapped[int] = mapped_column (primary_key=True, autoincrement=True)
-    telegram_id: Mapped[int] = mapped_column (BigInteger)
+    telegram_id: Mapped[int] = mapped_column (BigInteger, index=True)
     messages: Mapped[list["Message"]] = relationship(back_populates="user")
+    def __repr__(self):
+        return (
+            f"<User("
+            f"id={self.id}, "
+            f"telegram_id={self.telegram_id})>"
+            )
 
